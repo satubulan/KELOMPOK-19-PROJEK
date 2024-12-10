@@ -3,3 +3,47 @@ public class SafaFlow {
         System.out.println("Dengan SafaFlow di sini"); 
     }
 }
+
+SafaFlow: Sistem Pengelolaan Data Jemaah Haji dengan Struktur Data dan Algoritma
+Ide Project: Sistem Manajemen Haji  
+
+1. Linked List - Data Calon Jemaah  
+- Deskripsi: Menyimpan daftar calon jemaah secara dinamis.  
+- Operasi: Tambah, hapus, dan perbarui data jemaah.  
+- Contoh:  
+  -> Nama, nomor pendaftaran, tanggal pendaftaran, status pembayaran.  
+
+2. Stack - Riwayat Transaksi Pembayaran  
+Deskripsi: Setiap calon jemaah memiliki histori pembayaran yang disimpan dalam stack.  
+- Operasi:  
+Push: Tambahkan data jemaah haji yang emang harus ditumpuk, misal riwayat pembayaran, pendaftaran, tanggal.  
+Pop: Batalkan pembayaran terakhir jika terjadi kesalahan.  
+- Contoh:  
+[5 Mei 2024: Rp5.000.000] → [1 Mei 2024: Rp3.000.000]  
+
+3. Queue - Antrean Keberangkatan  
+- Deskripsi: Jemaah yang sudah melunasi pembayaran akan dimasukkan ke dalam antrean keberangkatan berdasarkan tanggal pendaftaran.  
+- Operasi:  
+  - Enqueue: Tambahkan jemaah ke antrean setelah pembayaran selesai.  
+  - Dequeue: Proses jemaah yang berangkat, yang masuk pertama berangkat pertama.  
+- Contoh:  
+  - Antrean: Jemaah A → Jemaah B → Jemaah C  
+
+4. Searching & Sorting - Pencarian dan Pengurutan Data 
+- Deskripsi: Cari dan urutkan jemaah untuk keperluan pelaporan atau pengelompokan.  
+- Operasi:  
+Searching: Cari jemaah berdasarkan nomor pendaftaran menggunakan linear search.  
+Sorting: Urutkan jemaah berdasarkan tanggal pendaftaran atau nama menggunakan insertion atau bubble sort (jumlah data kecil).  
+
+
+5. Tree - Struktur Keluarga/Ahli Waris
+- Deskripsi: Representasi hubungan keluarga antara calon haji dan ahli waris. Wilayah para calon haji.
+- Operasi:
+  - Tambah ahli waris baru.  
+  - Cari ahli waris terdekat saat calon haji batal.  
+-Contoh:
+          [Calon Haji Utama]
+              /      |      \
+     [Pasangan]  [Anak 1]  [Anak 2]
+                   |
+              [Cucu 1]
