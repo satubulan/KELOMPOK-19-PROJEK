@@ -1,16 +1,22 @@
 public class LinkedList{
     Node head, tail;
 
-    public void addData (String nomor, String tanggal, Boolean status, String nama, String jenis, int umur) {
-        Node newNode = new Node(nomor, tanggal, status, nama, jenis, umur);
-        if (head == null){
-            head = tail = newNode;
-        }else {
-            tail.next = newNode;
-            newNode.prev = tail;
-            tail = newNode;
-        }   
+    public void addData(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, 
+    String Nama, String JenisKelamin, int Umur, String ahliWaris1, String ahliWaris2) {
+        
+        Node newNode = new Node(nomorPendaftaran, TanggalPendaftaran, StatusPembayaran, 
+                                Nama, JenisKelamin, Umur, ahliWaris1, ahliWaris2);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+            temp.next = newNode;
+        }
     }
+
     public void hapusJemaah(String nomorPendaftaran) {
         if (head == null) {
             System.out.println("Data kosong");
@@ -32,17 +38,20 @@ public class LinkedList{
             temp.next = temp.next.next;
         }
     }
+    
     public void display(){
         Node temp = head;
         while (temp != null) {
-            System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
-            System.out.println("Tanggal Pembayaran: " + temp.TanggalPendaftaran);
-            System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
-            System.out.println("Nama Pendaftar: " + temp.Nama);
-            System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
-            System.out.println("Umur: " + temp.Umur);
-            temp = temp.next;
-            System.out.println();
+        System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
+        System.out.println("Nama Jemaah: " + temp.Nama);
+        System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
+        System.out.println("Umur: " + temp.Umur);
+        System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
+        System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
+        System.out.println("Ahli Waris 1: " + temp.ahliWaris1);
+        System.out.println("Ahli Waris 2: " + temp.ahliWaris2);
+        System.out.println();
+        temp = temp.next;
         }
         System.out.println();
     }   
