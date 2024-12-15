@@ -1,7 +1,5 @@
 import java.util.Scanner;
-
 public class Searching {
-
     // Mencari data jemaah berdasarkan nomor pendaftaran menggunakan linear search
     public Node cariJemaah(LinkedList linkedList, String nomorPendaftaran) {
         Node temp = linkedList.head;
@@ -85,15 +83,18 @@ public class Searching {
 
                 if (pilihanAhliWaris == 1) {
                     System.out.print("Masukkan nama ahli waris pertama yang baru: ");
-                    temp.ahliWaris1 = scanner.nextLine(); 
+                    String newAhliWarisPertama = scanner.nextLine();
+                    temp.ahliWarisRoot.namaAhliWaris = newAhliWarisPertama; // Mengubah nama ahli waris pertama ```java
                     System.out.println("Ahli waris pertama berhasil diubah.");
                 } else if (pilihanAhliWaris == 2) {
                     System.out.print("Masukkan nama ahli waris kedua yang baru: ");
-                    temp.ahliWaris2 = scanner.nextLine();  
-                    System.out.println("Ahli waris kedua berhasil diubah.");
+                    String newAhliWarisKedua = scanner.nextLine();
+                    temp.ahliWarisRoot.addChild(new TreeNode(newAhliWarisKedua)); // Menambahkan ahli waris kedua
+                    System.out.println("Ahli waris kedua berhasil ditambahkan.");
                 } else {
                     System.out.println("Pilihan tidak valid.");
                 }
+                break;
 
             default:
                 System.out.println("Pilihan tidak valid.");

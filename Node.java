@@ -4,21 +4,31 @@ public class Node {
     boolean StatusPembayaran;
     String Nama;
     String JenisKelamin;
-    int Umur;
-    String ahliWaris1;  
-    String ahliWaris2;  
+    int Umur; 
     Node next;
+    TreeNode ahliWarisRoot;
 
-    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, 
-    String Nama, String JenisKelamin, int Umur, String ahliWaris1, String ahliWaris2) {
+    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua){
         this.nomorPendaftaran = nomorPendaftaran;
         this.TanggalPendaftaran = TanggalPendaftaran;
         this.StatusPembayaran = StatusPembayaran;
         this.Nama = Nama;
         this.JenisKelamin = JenisKelamin;
-        this.Umur = Umur;
-        this.ahliWaris1 = ahliWaris1; 
-        this.ahliWaris2 = ahliWaris2; 
+        this.Umur = Umur; 
         this.next = null;
+
+        this.ahliWarisRoot = new TreeNode(ahliWarisPertama);
+        if (ahliWarisKedua != null && !ahliWarisKedua.isEmpty()) {
+            this.ahliWarisRoot.addChild(new TreeNode(ahliWarisKedua));
+        }
+        
+        this.next = null;
+    } 
+    public void displayTree() {
+        if (ahliWarisRoot == null) {
+            System.out.println("  Tidak ada ahli waris.");
+        } else {
+            ahliWarisRoot.displayTree(0);
+        }
     }
 }

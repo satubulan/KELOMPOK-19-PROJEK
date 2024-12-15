@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.time.LocalDate;
+import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
@@ -48,10 +48,12 @@ public class Main {
                     scanner.nextLine();  
 
                     System.out.print("Nama Ahli Waris 1: ");
-                    String ahliWaris1 = scanner.nextLine();
+                    String ahliWarisPertama = scanner.nextLine();
                     System.out.print("Nama Ahli Waris 2: ");
-                    String ahliWaris2 = scanner.nextLine();
-                    link.addData(nomor, tanggal, status, nama, jenis, umur, ahliWaris1, ahliWaris2);
+                    String ahliWarisKedua = scanner.nextLine();
+                    link.addData(nomor, tanggal, status, nama, jenis, umur, ahliWarisPertama, ahliWarisKedua);
+                    System.out.println("Data jemaah berhasil ditambahkan!");
+                    break;
 
                 case 2:
                     System.out.print("Masukkan nomor pendaftaran jemaah yang ingin di-update datanya: ");

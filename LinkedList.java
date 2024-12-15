@@ -1,11 +1,10 @@
-public class LinkedList{
-    Node head, tail;
-
+public class LinkedList {
+    Node head;
     public void addData(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, 
-    String Nama, String JenisKelamin, int Umur, String ahliWaris1, String ahliWaris2) {
+    String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua) {
         
         Node newNode = new Node(nomorPendaftaran, TanggalPendaftaran, StatusPembayaran, 
-                                Nama, JenisKelamin, Umur, ahliWaris1, ahliWaris2);
+        Nama, JenisKelamin, Umur, ahliWarisPertama, ahliWarisKedua);
         if (head == null) {
             head = newNode;
         } else {
@@ -16,7 +15,7 @@ public class LinkedList{
             temp.next = newNode;
         }
     }
-
+    
     public void hapusJemaah(String nomorPendaftaran) {
         if (head == null) {
             System.out.println("Data kosong");
@@ -42,17 +41,18 @@ public class LinkedList{
     public void display(){
         Node temp = head;
         while (temp != null) {
-        System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
-        System.out.println("Nama Jemaah: " + temp.Nama);
-        System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
-        System.out.println("Umur: " + temp.Umur);
-        System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
-        System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
-        System.out.println("Ahli Waris 1: " + temp.ahliWaris1);
-        System.out.println("Ahli Waris 2: " + temp.ahliWaris2);
-        System.out.println();
-        temp = temp.next;
+            System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
+            System.out.println("Nama Jemaah: " + temp.Nama);
+            System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
+            System.out.println("Umur: " + temp.Umur);
+            System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
+            System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
+            System.out.println("Ahli Waris Pertama: " + (temp.ahliWarisRoot != null ? temp.ahliWarisRoot.namaAhliWaris : "null"));
+            if (temp.ahliWarisRoot.firstChild != null) {
+                System.out.println("Ahli Waris Kedua: " + temp.ahliWarisRoot.firstChild.namaAhliWaris);
+            }
+            System.out.println("-------------------------");
+            temp = temp.next;
         }
-        System.out.println();
     }   
 }
