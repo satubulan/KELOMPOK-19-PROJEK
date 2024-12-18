@@ -44,12 +44,11 @@ public class LinkedList {
             System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
             System.out.println("Nama Jemaah: " + temp.Nama);
             System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
-            System.out.println("Umur: " + temp.Umur);
             System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
             System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
             System.out.println("Ahli Waris:");
             if (temp.child != null) {
-                temp.child.displayTree(1); // Memanggil displayTree dari TreeNode
+                temp.child.displayTree(0); // Memanggil displayTree dari TreeNode
             } else {
                 System.out.println("Tidak ada ahli waris.");
             }
@@ -57,15 +56,14 @@ public class LinkedList {
             temp = temp.next;
         
         }
-    }
-    public Node findByName(String name) {
-        Node current = head;
-        while (current != null) {
-            if (current.Nama.equalsIgnoreCase(name)) {
-                return current; // Kembalikan node jika ditemukan
-            }
-            current = current.next;
-        }
-        return null; // Kembalikan null jika tidak ditemukan
     } 
+    public Node findByName(String var1) {
+        for(Node var2 = this.head; var2 != null; var2 = var2.next) {
+           if (var2.Nama.equalsIgnoreCase(var1)) {
+              return var2;
+           }
+        }
+  
+        return null;
+     }
 }
