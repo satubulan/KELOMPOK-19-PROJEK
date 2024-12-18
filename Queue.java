@@ -1,5 +1,5 @@
 public class Queue {
-        static class Node {
+        class Node {
             String nama;
             Node next;
     

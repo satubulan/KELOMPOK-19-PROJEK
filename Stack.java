@@ -1,5 +1,5 @@
 public class Stack {
-        static class Node {
+        class Node {
             String tanggal2;
             double jumlah;
             Node next;
