@@ -1,10 +1,10 @@
 public class LinkedList {
     Node head;
     public void addData(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, 
-    String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua) {
+    String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua, String Penyakit) {
         
         Node newNode = new Node(nomorPendaftaran, TanggalPendaftaran, StatusPembayaran, 
-        Nama, JenisKelamin, Umur, ahliWarisPertama, ahliWarisKedua);
+        Nama, JenisKelamin, Umur, ahliWarisPertama, ahliWarisKedua, Penyakit);
         if (head == null) {
             head = newNode;
         } else {
@@ -51,6 +51,8 @@ public class LinkedList {
             System.out.println("Umur                : " + temp.Umur);
             System.out.println("Tanggal Pendaftaran : " + temp.TanggalPendaftaran);
             System.out.println("Status Pembayaran   : " + (temp.StatusPembayaran ? "Lunas" : "Belum Lunas"));
+            System.out.println("Penyakit            : " + temp.Penyakit );
+
             System.out.println("-----------------------------------------------------");
             temp.displayTree();
             System.out.println("-----------------------------------------------------");

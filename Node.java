@@ -5,17 +5,19 @@ public class Node {
     boolean StatusPembayaran;
     String Nama;
     String JenisKelamin;
+    String Penyakit;
     int Umur; 
     Node next;
     TreeNode ahliWarisRoot; // Root pohon ahli waris
 
-    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua){
+    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua, String penyakit){
         this.nomorPendaftaran = nomorPendaftaran;
         this.TanggalPendaftaran = TanggalPendaftaran;
         this.StatusPembayaran = StatusPembayaran;
         this.Nama = Nama;
         this.JenisKelamin = JenisKelamin;
         this.Umur = Umur; 
+        this.Penyakit = penyakit;
         this.next = null;
 
         this.ahliWarisRoot = new TreeNode(ahliWarisPertama); 
@@ -24,7 +26,6 @@ public class Node {
         }
     }
 
-    // Menampilkan pohon ahli waris
     public void displayTree() {
         if (ahliWarisRoot == null) {
             System.out.println("  Tidak ada ahli waris.");
@@ -32,8 +33,7 @@ public class Node {
             ahliWarisRoot.displayTree(0); 
         }
     }
-
-    // Menambahkan ahli waris baru sebagai child atau sibling
+    
     public void tambahAhliWaris(String namaBaru, boolean sebagaiAnak) {
         TreeNode ahliWarisBaru = new TreeNode(namaBaru);
         if (sebagaiAnak) {

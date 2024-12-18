@@ -8,9 +8,9 @@ public class Main {
         Stack riwayatPembayaran = new Stack();
         Queue antreanKeberangkatan = new Queue();
 
-        link.addData("A2897", "2018-09-11", true, "ibrahim", "Laki-laki", 89, "Yanti", "Yanto");
-        link.addData("B3456", "2021-08-12", false, "Fatimah", "Perempuan", 75, "Yanta", "Yante");
-        link.addData("C8909", "2016-07-10", true, "Ahmad", "Laki-laki", 35, "Yonge", "Yayat");
+        link.addData("A2897", "2018-09-11", true, "ibrahim", "Laki-laki", 89, "Yanti", "Yanto", "Asma");
+        link.addData("B3456", "2021-08-12", false, "Fatimah", "Perempuan", 75, "Yanta", "Yante", "Jantung");
+        link.addData("C8909", "2016-07-10", true, "Ahmad", "Laki-laki", 35, "Yonge", "Yayat", "-");
         
         System.out.println("  .-'''-.    ____     ________    ____     ________   .---.       ,-----.    .--.      .--. ");
         System.out.println(" / _     \\ .'  __ `. |        | .'  __ `. |        |  | ,_|     .'  .-,  '.  |  |_     |  | ");
@@ -70,11 +70,13 @@ public class Main {
                     System.out.print("Umur: ");
                     int umur = scanner.nextInt();
                     scanner.nextLine();  
+                    System.out.println("Penyakit: ");
+                    String penyakit = scanner.nextLine();
                     System.out.print("Nama Ahli Waris 1: ");
                     String ahliWarisPertama = scanner.nextLine();
                     System.out.print("Nama Ahli Waris 2: ");
                     String ahliWarisKedua = scanner.nextLine();
-                    link.addData(nomor, tanggal, status, nama, jenis, umur, ahliWarisPertama, ahliWarisKedua);
+                    link.addData(nomor, tanggal, status, nama, jenis, umur, ahliWarisPertama, ahliWarisKedua, penyakit);
                     System.out.println("Data jemaah berhasil ditambahkan!");
                     break;
 
@@ -122,14 +124,16 @@ public class Main {
                 case 5:
                     System.out.println("==============================================");
                     System.out.println("          TANGGAL DAN JUMLAH PEMBAYARAN      ");
-                    System.out.println("==============================================");
+                    System.out.println("==============================================");  
                     System.out.print("Tanggal Pembayaran (format: yyyy-mm-dd): ");
                     String tanggal2 = scanner.nextLine();
                     System.out.println("----------------------------------------------");
                     System.out.print("Jumlah Pembayaran: ");
-                
-                    double jumlah = scanner.nextDouble();
-                    riwayatPembayaran.push(tanggal2, jumlah);
+                    int Jumlah = scanner.nextInt();
+                    scanner.nextLine();  
+                    System.out.print("Metode Pembayaran (cash/transfer): ");
+                    String Metode = scanner.nextLine();
+                    riwayatPembayaran.push(tanggal2, Jumlah, Metode);
                     break;
 
                 case 6:
