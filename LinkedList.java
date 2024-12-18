@@ -38,21 +38,23 @@ public class LinkedList {
         }
     }
     
-    public void display(){
+    public void display() {
         Node temp = head;
+
+        System.out.println("=====================================================");
+        System.out.println("                DETAIL DATA JEMAAH                   ");
+        System.out.println("=====================================================");
         while (temp != null) {
-            System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
-            System.out.println("Nama Jemaah: " + temp.Nama);
-            System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
-            System.out.println("Umur: " + temp.Umur);
-            System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
-            System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
-            System.out.println("Ahli Waris Pertama: " + (temp.ahliWarisRoot != null ? temp.ahliWarisRoot.namaAhliWaris : "null"));
-            if (temp.ahliWarisRoot.firstChild != null) {
-                System.out.println("Ahli Waris Kedua: " + temp.ahliWarisRoot.firstChild.namaAhliWaris);
-            }
-            System.out.println("-------------------------");
+            System.out.println("Nomor Pendaftaran   : " + temp.nomorPendaftaran);
+            System.out.println("Nama Jemaah         : " + temp.Nama);
+            System.out.println("Jenis Kelamin       : " + temp.JenisKelamin);
+            System.out.println("Umur                : " + temp.Umur);
+            System.out.println("Tanggal Pendaftaran : " + temp.TanggalPendaftaran);
+            System.out.println("Status Pembayaran   : " + (temp.StatusPembayaran ? "Lunas" : "Belum Lunas"));
+            System.out.println("-----------------------------------------------------");
+            temp.displayTree();
+            System.out.println("-----------------------------------------------------");
             temp = temp.next;
         }
-    }   
+    }    
 }

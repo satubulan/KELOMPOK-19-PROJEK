@@ -71,6 +71,7 @@ public class Sorting {
         String tempNama = node1.Nama;
         String tempJenis = node1.JenisKelamin;
         int tempUmur = node1.Umur;
+        TreeNode tempAhliWaris = node1.ahliWarisRoot;
 
         node1.nomorPendaftaran = node2.nomorPendaftaran;
         node1.TanggalPendaftaran = node2.TanggalPendaftaran;
@@ -78,6 +79,7 @@ public class Sorting {
         node1.Nama = node2.Nama;
         node1.JenisKelamin = node2.JenisKelamin;
         node1.Umur = node2.Umur;
+        node1.ahliWarisRoot = node2.ahliWarisRoot;
 
         node2.nomorPendaftaran = tempNomor;
         node2.TanggalPendaftaran = tempTanggal;
@@ -85,5 +87,6 @@ public class Sorting {
         node2.Nama = tempNama;
         node2.JenisKelamin = tempJenis;
         node2.Umur = tempUmur;
+        node2.ahliWarisRoot = tempAhliWaris;
     }
 }
