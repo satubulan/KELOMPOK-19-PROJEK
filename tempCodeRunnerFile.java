@@ -1,0 +1,1 @@
+familyTree.displayTree(root, 0);

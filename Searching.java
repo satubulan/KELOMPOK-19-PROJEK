@@ -84,18 +84,18 @@ public class Searching {
                 if (pilihanAhliWaris == 1) {
                     System.out.print("Masukkan nama ahli waris pertama yang baru: ");
                     String newAhliWarisPertama = scanner.nextLine();
-                    temp.ahliWarisRoot.namaAhliWaris = newAhliWarisPertama; // Mengubah nama ahli waris pertama ```java
+                    temp.child = new TreeNode(newAhliWarisPertama, "Ahli Waris Pertama"); // Mengubah nama ahli waris pertama
                     System.out.println("Ahli waris pertama berhasil diubah.");
                 } else if (pilihanAhliWaris == 2) {
                     System.out.print("Masukkan nama ahli waris kedua yang baru: ");
                     String newAhliWarisKedua = scanner.nextLine();
-                    temp.ahliWarisRoot.addChild(new TreeNode(newAhliWarisKedua)); // Menambahkan ahli waris kedua
-                    System.out.println("Ahli waris kedua berhasil ditambahkan.");
+                    if (temp.child == null) {
+                        temp.child = new TreeNode(newAhliWarisKedua, "Ahli Waris kedua"); // Menambahkan ahli waris kedua
+                    } 
                 } else {
                     System.out.println("Pilihan tidak valid.");
                 }
                 break;
-
             default:
                 System.out.println("Pilihan tidak valid.");
                 break;

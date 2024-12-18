@@ -7,10 +7,24 @@ public class Main {
         LinkedList link = new LinkedList();
         Stack riwayatPembayaran = new Stack();
         Queue antreanKeberangkatan = new Queue();
+        TreeNode familyTree = new TreeNode("Keluarga", "Root");
 
-        link.addData("A2897", "2018-09-11", true, "ibrahim", "Laki-laki", 89, "Yanti", "Yanto");
-        link.addData("B3456", "2021-08-12", false, "Fatimah", "Perempuan", 75, "Yanta", "Yante");
-        link.addData("C8909", "2016-07-10", true, "Ahmad", "Laki-laki", 35, "Yonge", "Yayat");
+       // Menambah data jemaah
+        TreeNode treeNodeIbrahim = new TreeNode("Ibrahim", "Calon Haji Utama");
+        treeNodeIbrahim.addChild("Yanti", "Pasangan");
+        treeNodeIbrahim.addChild("Yanto", "Anak");
+        link.addData("A2897", "2018-09-11", true, "Ibrahim", "Laki-laki", 89, treeNodeIbrahim);
+
+        TreeNode treeNodeFatimah = new TreeNode("Fatimah", "Calon Haji Utama");
+        treeNodeFatimah.addChild("Yanta", "Pasangan");
+        treeNodeFatimah.addChild("Yante", "Anak");
+        link.addData("B3456", "2021-08-12", false, "Fatimah", "Perempuan", 75, treeNodeFatimah);
+
+        TreeNode treeNodeAhmad = new TreeNode("Ahmad", "Calon Haji Utama");
+        treeNodeAhmad.addChild("Fatimah", "Pasangan");
+        treeNodeAhmad.addChild("Ali", "Anak");
+        treeNodeAhmad.addChild("Hassan", "Cucu");
+        link.addData("C8909", "2016-07-10", true, "Ahmad", "Laki-laki", 35, treeNodeAhmad);
         
         while (true) {
             System.out.println("\nMenu:");
@@ -25,6 +39,8 @@ public class Main {
             System.out.println("8. Tambah Ke Antrean Keberangkatan");
             System.out.println("9. Proses Keberangkatan Jemaah");
             System.out.println("10. Tampilkan Antrean");
+            System.out.println("11. Tambah Ahli Waris");
+            System.out.println("12. Tampilkan Tree Ahli Waris");
             System.out.print("Pilih menu: ");
             int pilihan = scanner.nextInt();
             scanner.nextLine(); 
@@ -46,14 +62,31 @@ public class Main {
                     System.out.print("Umur: ");
                     int umur = scanner.nextInt();
                     scanner.nextLine();  
+                    
 
-                    System.out.print("Nama Ahli Waris 1: ");
-                    String ahliWarisPertama = scanner.nextLine();
-                    System.out.print("Nama Ahli Waris 2: ");
-                    String ahliWarisKedua = scanner.nextLine();
-                    link.addData(nomor, tanggal, status, nama, jenis, umur, ahliWarisPertama, ahliWarisKedua);
-                    System.out.println("Data jemaah berhasil ditambahkan!");
+                    // Buat node untuk jemaah di tree
+                    TreeNode jemaahNode = new TreeNode(nama, "Calon Haji Utama");
+                    jemaahNode.addChild("", "Jemaah Utama");
+
+                    // Tambahkan Ahli Waris
+                    while (true) {
+                        System.out.print("Tambahkan ahli waris? (y/n): ");
+                        String tambahAhliWaris = scanner.nextLine();
+                        if (tambahAhliWaris.equalsIgnoreCase("n")) break;
+
+                        System.out.print("Nama Ahli Waris: ");
+                        String name = scanner.nextLine();
+                        System.out.print("Hubungan dengan Jemaah (misal: Pasangan, Anak, Cucu): ");
+                        String relationship = scanner.nextLine();
+
+                        // Tambahkan ahli waris ke tree
+                        jemaahNode.addChild(name, relationship);
+                        System.out.println("Ahli waris berhasil ditambahkan.");
+                    }
+                    link.addData(nomor, tanggal, status, nama, jenis, umur, jemaahNode);
+                    System.out.println("Data jemaah berhasil ditambahkan.");
                     break;
+                
 
                 case 2:
                     System.out.print("Masukkan nomor pendaftaran jemaah yang ingin di-update datanya: ");
@@ -115,7 +148,49 @@ public class Main {
                 case 10:
                     antreanKeberangkatan.tampilkanAntrean();
                     break;
-
+                    case 11:
+                    System.out.print("Masukkan nomor pendaftaran jemaah: ");
+                    String nomorCari = scanner.nextLine();
+                    Node targetNode = link.head;
+                    while (targetNode != null && !targetNode.nomorPendaftaran.equals(nomorCari)) {
+                        targetNode = targetNode.next;
+                    }
+                    if (targetNode == null) {
+                        System.out.println("Jemaah tidak ditemukan.");
+                    } else {
+                        System.out.print("Nama ahli waris (parent): ");
+                        String parentName = scanner.nextLine();
+                        System.out.print("Nama ahli waris baru: ");
+                        String childName = scanner.nextLine();
+                        
+                        // Find the parent node in the family tree
+                        TreeNode parentTreeNode = familyTree.findFamilyRoot(parentName);
+                        if (parentTreeNode == null) {
+                            System.out.println("Orang tua tidak ditemukan.");
+                        } else {
+                            // Menambahkan anak ke node yang sesuai
+                            parentTreeNode.addChild(childName, "ahli waris"); // Corrected to use name and relationship
+                            System.out.println("Ahli waris berhasil ditambahkan.");
+                        }
+                    }
+                    break;
+                case 12:
+                System.out.print("Masukkan nama jemaah: ");
+                String namaJemaah = scanner.nextLine();
+                Node foundNode = link.findByName(namaJemaah); // Mencari jemaah berdasarkan nama
+                if (foundNode == null) {
+                    System.out.println("Jemaah tidak ditemukan.");
+                } else {
+                    // Menggunakan findFamilyRoot untuk menemukan node di tree
+                    TreeNode root = foundNode.child;
+                    if (root == null) {
+                        System.out.println("Pohon ahli waris tidak ditemukan.");
+                    } else {
+                        System.out.println("Tree Ahli Waris untuk " + root.name + ":");
+                        root.displayTree(1); // Menampilkan pohon
+                    }
+                }            
+                break;
                 default:
                     System.out.println("Pilihan tidak valid.");
             }

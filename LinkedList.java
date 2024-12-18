@@ -1,10 +1,10 @@
 public class LinkedList {
     Node head;
     public void addData(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, 
-    String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua) {
+    String Nama, String JenisKelamin, int Umur, TreeNode child) {
         
         Node newNode = new Node(nomorPendaftaran, TanggalPendaftaran, StatusPembayaran, 
-        Nama, JenisKelamin, Umur, ahliWarisPertama, ahliWarisKedua);
+        Nama, JenisKelamin, Umur, child);
         if (head == null) {
             head = newNode;
         } else {
@@ -47,12 +47,25 @@ public class LinkedList {
             System.out.println("Umur: " + temp.Umur);
             System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
             System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
-            System.out.println("Ahli Waris Pertama: " + (temp.ahliWarisRoot != null ? temp.ahliWarisRoot.namaAhliWaris : "null"));
-            if (temp.ahliWarisRoot.firstChild != null) {
-                System.out.println("Ahli Waris Kedua: " + temp.ahliWarisRoot.firstChild.namaAhliWaris);
+            System.out.println("Ahli Waris:");
+            if (temp.child != null) {
+                temp.child.displayTree(1); // Memanggil displayTree dari TreeNode
+            } else {
+                System.out.println("Tidak ada ahli waris.");
             }
-            System.out.println("-------------------------");
+            
             temp = temp.next;
+        
         }
-    }   
+    }
+    public Node findByName(String name) {
+        Node current = head;
+        while (current != null) {
+            if (current.Nama.equalsIgnoreCase(name)) {
+                return current; // Kembalikan node jika ditemukan
+            }
+            current = current.next;
+        }
+        return null; // Kembalikan null jika tidak ditemukan
+    } 
 }

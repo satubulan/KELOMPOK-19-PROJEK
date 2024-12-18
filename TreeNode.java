@@ -1,30 +1,60 @@
 public class TreeNode {
-    String namaAhliWaris;
-    TreeNode firstChild;
-    TreeNode nextSibling;
-    public TreeNode (String namaAhliwaris){
-        this.namaAhliWaris = namaAhliWaris;
+    String name;                // Nama dari node (misal nama ahli waris)
+    String relationship;        // Hubungan dengan jemaah utama
+    TreeNode firstChild;        // Anak pertama
+    TreeNode nextSibling;       // Saudara kandung berikutnya
+
+    // Constructor
+    public TreeNode(String name, String relationship) {
+        this.name = name;
+        this.relationship = relationship;
         this.firstChild = null;
         this.nextSibling = null;
     }
-    public void addChild(TreeNode child) {
+
+    // Menambahkan anak ke node ini
+    public void addChild(String childName, String childRelationship) {
+        TreeNode newChild = new TreeNode(childName, childRelationship);
         if (this.firstChild == null) {
-            this.firstChild = child;
+            this.firstChild = newChild;
         } else {
-            TreeNode temp = this.firstChild;
-            while (temp.nextSibling != null) {
-                temp = temp.nextSibling;
+            TreeNode sibling = this.firstChild;
+            while (sibling.nextSibling != null) {
+                sibling = sibling.nextSibling;
             }
-            temp.nextSibling = child;
+            sibling.nextSibling = newChild;
         }
     }
-    public void displayTree(int level) {
-        System.out.println("  ".repeat(level) + this.namaAhliWaris);
-        if (this.firstChild != null) {
-            this.firstChild.displayTree(level + 1);
+    
+    // Menampilkan tree (preorder traversal)
+    public void displayTree(int depth) {
+        for (int i = 0; i < depth; i++) {
+            System.out.print("  ");
         }
-        if (this.nextSibling != null) {
-            this.nextSibling.displayTree(level);
+        System.out.println("- " + name + " (" + relationship + ")");
+        TreeNode child = firstChild;
+        while (child != null) {
+            child.displayTree(depth + 1);
+            child = child.nextSibling;
         }
+    }
+    public TreeNode findFamilyRoot(String name) {
+        if (this.name.equals(name)) {
+            return this;
+        }
+        TreeNode child = firstChild;
+        while (child != null) {
+            TreeNode result = child.findFamilyRoot(name);
+            if (result != null) {
+                return result;
+            }
+            child = child.nextSibling;
+        }
+        return null;
+    }
+    public TreeNode getTreeNodeFromNode(Node node) {
+    // Logika untuk mendapatkan TreeNode dari Node
+    // Misalnya, jika Anda menyimpan TreeNode di dalam Node
+    return node.child; // Asumsi child adalah TreeNode
     }
 }
