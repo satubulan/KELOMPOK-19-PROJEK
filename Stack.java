@@ -2,11 +2,13 @@ public class Stack {
     class Node {
         String tanggal2;
         double jumlah;
+        String Metode;
         Node next;
 
-        Node(String tanggal, double jumlah) {
+        Node(String tanggal, double jumlah, String metode) {
             this.tanggal2 = tanggal;
             this.jumlah = jumlah;
+            this.Metode = metode;
             this.next = null;
         }
     }
@@ -17,8 +19,8 @@ public class Stack {
         top = null;
     }
 
-    public void push(String tanggal, double jumlah) {
-        Node newNode = new Node(tanggal, jumlah);
+    public void push(String tanggal, double jumlah, String metode) {
+        Node newNode = new Node(tanggal, jumlah, metode);
         newNode.next = top;
         top = newNode;
     }
@@ -37,7 +39,9 @@ public class Stack {
         } else {
             Node temp = top;
             while (temp != null) {
-                System.out.println("Tanggal: " + temp.tanggal2 + ", Jumlah: Rp" + temp.jumlah);
+                System.out.println("Tanggal                         : " + temp.tanggal2);
+                System.out.println("Jumlah                          : Rp" + temp.jumlah);
+                System.out.println("Metode Pembayaran cash/transfer : " + temp.Metode);
                 temp = temp.next;
             }
         }

@@ -8,13 +8,15 @@ public class Node {
     int Umur; 
     Node next;
     TreeNode ahliWarisRoot; 
+    String Penyakit;
 
-    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua){
+    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua, String penyakit){
         this.nomorPendaftaran = nomorPendaftaran;
         this.TanggalPendaftaran = TanggalPendaftaran;
         this.StatusPembayaran = StatusPembayaran;
         this.Nama = Nama;
         this.JenisKelamin = JenisKelamin;
+        this.Penyakit = penyakit;
         this.Umur = Umur; 
         this.next = null;
 
