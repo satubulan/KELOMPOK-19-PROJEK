@@ -1,10 +1,10 @@
 public class LinkedList {
     Node head;
     public void addData(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, 
-    String Nama, String JenisKelamin, int Umur, TreeNode child) {
+    String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua) {
         
         Node newNode = new Node(nomorPendaftaran, TanggalPendaftaran, StatusPembayaran, 
-        Nama, JenisKelamin, Umur, child);
+        Nama, JenisKelamin, Umur, ahliWarisPertama, ahliWarisKedua);
         if (head == null) {
             head = newNode;
         } else {
@@ -38,32 +38,23 @@ public class LinkedList {
         }
     }
     
-    public void display(){
+    public void display() {
         Node temp = head;
+
+        System.out.println("=====================================================");
+        System.out.println("                DETAIL DATA JEMAAH                   ");
+        System.out.println("=====================================================");
         while (temp != null) {
-            System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
-            System.out.println("Nama Jemaah: " + temp.Nama);
-            System.out.println("Jenis Kelamin: " + temp.JenisKelamin);
-            System.out.println("Tanggal Pendaftaran: " + temp.TanggalPendaftaran);
-            System.out.println("Status Pembayaran: " + temp.StatusPembayaran);
-            System.out.println("Ahli Waris:");
-            if (temp.child != null) {
-                temp.child.displayTree(0); // Memanggil displayTree dari TreeNode
-            } else {
-                System.out.println("Tidak ada ahli waris.");
-            }
-            
+            System.out.println("Nomor Pendaftaran   : " + temp.nomorPendaftaran);
+            System.out.println("Nama Jemaah         : " + temp.Nama);
+            System.out.println("Jenis Kelamin       : " + temp.JenisKelamin);
+            System.out.println("Umur                : " + temp.Umur);
+            System.out.println("Tanggal Pendaftaran : " + temp.TanggalPendaftaran);
+            System.out.println("Status Pembayaran   : " + (temp.StatusPembayaran ? "Lunas" : "Belum Lunas"));
+            System.out.println("-----------------------------------------------------");
+            temp.displayTree();
+            System.out.println("-----------------------------------------------------");
             temp = temp.next;
-        
         }
-    } 
-    public Node findByName(String var1) {
-        for(Node var2 = this.head; var2 != null; var2 = var2.next) {
-           if (var2.Nama.equalsIgnoreCase(var1)) {
-              return var2;
-           }
-        }
-  
-        return null;
-     }
+    }    
 }
