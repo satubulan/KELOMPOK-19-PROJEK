@@ -9,6 +9,7 @@ public class Node {
     Node next;
     TreeNode ahliWarisRoot; 
     String Penyakit;
+    Stack riwayatPembayaran;
 
     public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String ahliWarisPertama, String ahliWarisKedua, String penyakit){
         this.nomorPendaftaran = nomorPendaftaran;
@@ -19,6 +20,7 @@ public class Node {
         this.Penyakit = penyakit;
         this.Umur = Umur; 
         this.next = null;
+        this.riwayatPembayaran = new Stack();
 
         this.ahliWarisRoot = new TreeNode(ahliWarisPertama); 
         if (ahliWarisKedua != null && !ahliWarisKedua.isEmpty()) {

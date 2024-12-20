@@ -15,6 +15,32 @@ public class LinkedList {
             temp.next = newNode;
         }
     }
+    public boolean cekNomorPendaftaran(String nomorPendaftaran) {
+        Node temp = head;
+        while (temp != null) {
+            if (temp.nomorPendaftaran.equals(nomorPendaftaran)) {
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
+    public void bayar(String nomorPendaftaran, String tanggal, int jumlah, String metode) {
+        Node temp = head;
+        while (temp != null && !temp.nomorPendaftaran.equals(nomorPendaftaran)) {
+            temp = temp.next;
+        }
+        if (temp == null) {
+            System.out.println("Nomor pendaftaran tidak ditemukan.");
+        } else {
+            temp.riwayatPembayaran.push(tanggal, jumlah, metode);
+            if (temp.riwayatPembayaran.totalPembayaran() >= 56000000) {
+                temp.StatusPembayaran = true;
+            }
+            System.out.println("Pembayaran berhasil dilakukan.");
+        }
+    }
     
     public void hapusJemaah(String nomorPendaftaran) {
         if (head == null) {
@@ -57,5 +83,22 @@ public class LinkedList {
             System.out.println("-----------------------------------------------------");
             temp = temp.next;
         }
-    }    
+    }
+    public void showPaymentHistory(){
+        Node temp = head;
+        System.out.println("=====================================================");
+        System.out.println("                RIWAYAT PEMBAYARAN                   ");
+        System.out.println("=====================================================");
+        while (temp != null) {
+            System.out.println("Nomor Pendaftaran: " + temp.nomorPendaftaran);
+            System.out.println("Nama Jemaah: " + temp.Nama);
+            System.out.println("-----------------------------------------------------");
+            temp.riwayatPembayaran.tampilkanRiwayat();
+            System.out.println("Status Pembayaran: " + (temp.StatusPembayaran ? "Lunas" : "Belum Lunas"));
+            System.out.println
+            ("-----------------------------------------------------");
+            temp = temp.next;
+        }
+    }
 }
+

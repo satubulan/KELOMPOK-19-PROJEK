@@ -46,4 +46,13 @@ public class Stack {
             }
         }
     }
+        public int totalPembayaran() {
+            int total = 0;
+            Node temp = top;
+            while (temp != null) {
+                total += temp.jumlah;
+                temp = temp.next;
+            }
+            return total;
+    }
 }

@@ -70,7 +70,7 @@ public class Main {
                     System.out.print("Umur: ");
                     int umur = scanner.nextInt();
                     scanner.nextLine();  
-                    System.out.println("Penyakit: ");
+                    System.out.print("Penyakit: ");
                     String penyakit = scanner.nextLine();
                     System.out.print("Nama Ahli Waris 1: ");
                     String ahliWarisPertama = scanner.nextLine();
@@ -121,19 +121,25 @@ public class Main {
                     }
                     break;
 
-                case 5:
+                    case 5:
                     System.out.println("==============================================");
                     System.out.println("          TANGGAL DAN JUMLAH PEMBAYARAN      ");
                     System.out.println("==============================================");
+                    System.out.print("Nomor Pendaftaran: ");
+                    String nomorPendaftaran = scanner.nextLine();
+                    if(!link.cekNomorPendaftaran(nomorPendaftaran)){
+                        System.out.println("Nomor pendaftaran tidak ditemukan.");
+                        break;
+                    }
                     System.out.print("Tanggal Pembayaran (format: yyyy-mm-dd): ");
                     String tanggal2 = scanner.nextLine();
                     System.out.println("----------------------------------------------");
                     System.out.print("Jumlah Pembayaran: ");
-                    double jumlah = scanner.nextDouble();
+                    int jumlah = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.print("Metode Pembayaran (cash/transfer): ");
-                    String Metode = scanner.nextLine();
-                    riwayatPembayaran.push(tanggal2, jumlah, Metode);
+                    System.out.print("Metode Pembayaran: ");
+                    String metode = scanner.nextLine();
+                    link.bayar(nomorPendaftaran, tanggal2, jumlah, metode);
                     break;
 
                 case 6:
@@ -141,7 +147,7 @@ public class Main {
                     break;
 
                 case 7:
-                    riwayatPembayaran.tampilkanRiwayat();
+                    link.showPaymentHistory();
                     break;
 
                 case 8:
