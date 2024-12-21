@@ -5,7 +5,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         LinkedList link = new LinkedList();
-        Stack riwayatPembayaran = new Stack();
         Queue antreanKeberangkatan = new Queue();
 
         link.addData("A2897", "2018-09-11", true, "Ibrahim", "Laki-laki", 89, "Yanti", "Yanto", "Jantung");
@@ -172,7 +171,16 @@ public class Main {
                     break;
 
                 case 6:
-                    riwayatPembayaran.pop();
+                    System.out.println("==============================================");
+                    System.out.println("      BATALKAN TRANSAKSI PEMBAYARAN          ");
+                    System.out.println("==============================================");
+                    System.out.print("Nomor Pendaftaran: ");
+                    String nomorPendaftaran2 = scanner.nextLine();
+                    if(!link.cekNomorPendaftaran(nomorPendaftaran2)){
+                        System.out.println("Nomor pendaftaran tidak ditemukan.");
+                    }else{
+                        link.batalPembayaran(nomorPendaftaran2);
+                    }
                     break;
 
                 case 7:

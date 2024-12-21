@@ -117,4 +117,19 @@ public class LinkedList {
             temp = temp.next;
         }
     }
+    public void batalPembayaran(String nomorPendaftaran) {
+        Node temp = head;
+        while (temp != null && !temp.nomorPendaftaran.equals(nomorPendaftaran)) {
+            temp = temp.next;
+        }
+        if (temp == null) {
+            System.out.println("Nomor pendaftaran tidak ditemukan.");
+        } else {
+            temp.riwayatPembayaran.pop();
+            if (temp.riwayatPembayaran.totalPembayaran() < 56000000) {
+                temp.StatusPembayaran = false;
+            }
+            System.out.println("Pembatalan pembayaran berhasil dilakukan.");
+        }
+    }
 }
