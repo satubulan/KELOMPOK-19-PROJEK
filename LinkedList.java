@@ -26,6 +26,17 @@ public class LinkedList {
         return false;
     }
 
+    public boolean cekNama(String Nama) {
+        Node temp = head;
+        while (temp != null) {
+            if (temp.Nama.equalsIgnoreCase(Nama)) {
+                return true;
+            }
+            temp = temp.next;
+        }
+        return false;
+    }
+
     public void bayar(String nomorPendaftaran, String tanggal, int jumlah, String metode) {
         Node temp = head;
         while (temp != null && !temp.nomorPendaftaran.equals(nomorPendaftaran)) {

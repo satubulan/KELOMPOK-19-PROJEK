@@ -8,10 +8,28 @@ public class Main {
         Stack riwayatPembayaran = new Stack();
         Queue antreanKeberangkatan = new Queue();
 
-        link.addData("A2897", "2018-09-11", true, "ibrahim", "Laki-laki", 89, "Yanti", "Yanto", "Jantung");
+        link.addData("A2897", "2018-09-11", true, "Ibrahim", "Laki-laki", 89, "Yanti", "Yanto", "Jantung");
         link.addData("B3456", "2021-08-12", false, "Fatimah", "Perempuan", 75, "Yanta", "Yante", "Asma");
         link.addData("C8909", "2016-07-10", true, "Ahmad", "Laki-laki", 35, "Yonge", "Yayat", "-");
-        
+        link.addData("D1234", "2019-09-12", false, "Mutia", "Perempuan", 25, "Kuro", "Yaya", "-");
+        link.addData("E7890", "2024-06-28", true, "Indi", "Perempuan", 28, "mima", "titi", "Paru-paru basah");
+        link.addData("F8679", "2016-01-13", false, "Fiana", "Perempuan", 56, "Nasywa", "Nana", "Jantung");
+        link.addData("G0987", "2017-02-09", false, "Anis", "Perempuan", 35, "Malik", "Tya", "-");
+        link.addData("H4576", "2018-08-02", true, "Alysa", "Perempuan", 24, "Alya", "Ayi", "Asma");
+        link.addData("I9804", "2017-09-03", true, "Kaziya", "Perempuan", 38, "Adit", "Liza", "Paru-paru basah");
+        link.addData("J5378", "2022-05-01", true, "Rifqy", "Laki-laki", 23, "Hali", "Nayla", "-");
+
+        link.bayar("A2897", "2018-09-11", 56000000, "Cash");
+        link.bayar("B3456", "2021-08-12", 56000000, "Cash"); 
+        link.bayar("C8909", "2016-07-10", 38000000, "Cash");
+        link.bayar("D1234", "2019-09-12", 16000000, "Transfer");
+        link.bayar("E7890", "2024-06-28", 38000000, "Cash");
+        link.bayar("F8679", "2016-01-13", 38000000, "Cash");
+        link.bayar("G0987", "2017-02-09", 38000000, "Cash");
+        link.bayar("H4576", "2016-07-10", 38000000, "Cash");
+        link.bayar("I9804", "2016-07-10", 38000000, "Cash");
+        link.bayar("J5378", "2016-07-10", 38000000, "Cash");
+
         System.out.println("  .-'''-.    ____     ________    ____     ________   .---.       ,-----.    .--.      .--. ");
         System.out.println(" / _     \\ .'  __ `. |        | .'  __ `. |        |  | ,_|     .'  .-,  '.  |  |_     |  | ");
         System.out.println("(`' )/`--'/   '  \\  \\|   .----'/   '  \\  \\|   .----',-./  )    / ,-.|  \\ _ \\ | _( )_   |  | ");
@@ -86,6 +104,10 @@ public class Main {
                     System.out.println("=====================================================");
                     System.out.print("Masukkan nomor pendaftaran jemaah yang ingin di-update datanya: ");
                     String update = scanner.nextLine();
+                    if(!link.cekNomorPendaftaran(update)){
+                        System.out.println("Nomor pendaftaran tidak ditemukan.");
+                        break;
+                    }
                     Searching.updateData(link, update);
                     break;
 
@@ -95,6 +117,10 @@ public class Main {
                     System.out.println("=====================================================");
                     System.out.print("Masukkan nomor pendaftaran jemaah yang ingin dihapus: ");
                     String hapusPendaftaran = scanner.nextLine();
+                    if(!link.cekNomorPendaftaran(hapusPendaftaran)){
+                        System.out.println("Nomor pendaftaran tidak ditemukan.");
+                        break;
+                    }
                     link.hapusJemaah(hapusPendaftaran);
                     break;
 
@@ -156,7 +182,10 @@ public class Main {
                     System.out.println("==============================================");
                     System.out.print("Nama Jemaah yang akan dimasukkan antrean: ");
                     String antreanNama = scanner.nextLine();
-                    
+                    if(!link.cekNama(antreanNama)){
+                         System.out.println("Nama Jemaah tidak ditemukan.");
+                        break;
+                    }
                     antreanKeberangkatan.enqueue(antreanNama);
                     break;
 
