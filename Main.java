@@ -112,17 +112,19 @@ public class Main {
                     Searching.updateData(link, update);
                     break;
 
-                case 3:
+                    case 3:
                     System.out.println("=====================================================");
                     System.out.println("   HAPUS DATA JEMAAH BERDASARKAN NOMOR PENDAFTARAN   ");
                     System.out.println("=====================================================");
                     System.out.print("Masukkan nomor pendaftaran jemaah yang ingin dihapus: ");
                     String hapusPendaftaran = scanner.nextLine();
-                    if(!link.cekNomorPendaftaran(hapusPendaftaran)){
-                        System.out.println("Nomor pendaftaran tidak ditemukan.");
-                        break;
-                    }
-                    link.hapusJemaah(hapusPendaftaran);
+                    System.out.print("Apakah Anda ingin menghapus seluruh data? (y/n): ");
+                    String hapusSeluruhData = scanner.nextLine();
+                    if (hapusSeluruhData.equalsIgnoreCase("y")) {
+                        link.hapusJemaah(hapusPendaftaran, true); // true jika Anda ingin menghapus seluruh data
+                    } else {
+                        link.hapusJemaah(hapusPendaftaran, false);
+                    } // false jika Anda tidak ingin menghapus seluruh data
                     break;
 
                 case 4:

@@ -53,25 +53,31 @@ public class LinkedList {
         }
     }
     
-    public void hapusJemaah(String nomorPendaftaran) {
+    public void hapusJemaah(String nomorPendaftaran, boolean hapusSeluruh) {
         if (head == null) {
             System.out.println("Data kosong");
             return;
         }
         if (head.nomorPendaftaran.equals(nomorPendaftaran)) {
-            head = head.next;
+            if (hapusSeluruh) {
+                head = head.next;
+            } else {
+                Node temp = head;
+                Node parentToDelete = head;
+                head = head.next;
+                if (temp.ahliWarisRoot != null) {
+                    Node newNode = new Node(temp.ahliWarisRoot.namaAhliWaris, parentToDelete.TanggalPendaftaran, false, "", "", 0, "", parentToDelete.ahliWarisRoot.nextSibling); 
+                    newNode.next = head; 
+                    head = newNode; 
+
+                    TreeNode child = temp.ahliWarisRoot.firstChild;
+                    while (child != null) {
+                        head.tambahAhliWaris(child.namaAhliWaris, true); // Tambahkan sebagai anak
+                        child = child.nextSibling;
+                    }
+                }
+            }
             return;
-        }
-
-        Node temp = head;
-        while (temp.next != null && !temp.next.nomorPendaftaran.equals(nomorPendaftaran)) {
-            temp = temp.next;
-        }
-
-        if (temp.next == null) {
-            System.out.println("Calon jemaah tidak ditemukan");
-        } else {
-            temp.next = temp.next.next;
         }
     }
     
