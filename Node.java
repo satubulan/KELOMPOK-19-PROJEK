@@ -27,17 +27,12 @@ public class Node {
             this.ahliWarisRoot.addSibling(new TreeNode(ahliWarisKedua)); 
         }
     }
-    public Node(String nomorPendaftaran, String TanggalPendaftaran, boolean StatusPembayaran, String Nama, String JenisKelamin, int Umur, String penyakit, TreeNode ahliWarisRoot) {
-        this.nomorPendaftaran = nomorPendaftaran;
-        this.TanggalPendaftaran = TanggalPendaftaran;
-        this.StatusPembayaran = StatusPembayaran;
-        this.Nama = Nama;
-        this.JenisKelamin = JenisKelamin;
-        this.Umur = Umur; 
-        this.Penyakit = penyakit;
-        this.ahliWarisRoot = ahliWarisRoot; // Set ahliWarisRoot
+    
+    public Node(String nama){
+        this.Nama = nama;
         this.next = null;
     }
+
     // Menampilkan pohon ahli waris
     public void displayTree() {
         if (ahliWarisRoot == null) {

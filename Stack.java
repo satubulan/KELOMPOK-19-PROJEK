@@ -1,26 +1,12 @@
 public class Stack {
-    class Node {
-        String tanggal2;
-        double jumlah;
-        String Metode;
-        Node next;
-
-        Node(String tanggal, double jumlah, String metode) {
-            this.tanggal2 = tanggal;
-            this.jumlah = jumlah;
-            this.Metode = metode;
-            this.next = null;
-        }
-    }
-
-    Node top;
+    NodeStack top;
 
     public Stack() {
         top = null;
     }
 
-    public void push(String tanggal, double jumlah, String metode) {
-        Node newNode = new Node(tanggal, jumlah, metode);
+    public void push(String tanggal, int jumlah, String metode) {
+        NodeStack newNode = new NodeStack(tanggal, jumlah, metode);
         newNode.next = top;
         top = newNode;
     }
@@ -37,7 +23,7 @@ public class Stack {
         if (top == null) {
             System.out.println("Riwayat pembayaran kosong.");
         } else {
-            Node temp = top;
+            NodeStack temp = top;
             while (temp != null) {
                 System.out.println("Tanggal                         : " + temp.tanggal2);
                 System.out.println("Jumlah                          : Rp" + temp.jumlah);
@@ -48,7 +34,7 @@ public class Stack {
     }
         public int totalPembayaran() {
             int total = 0;
-            Node temp = top;
+            NodeStack temp = top;
             while (temp != null) {
                 total += temp.jumlah;
                 temp = temp.next;

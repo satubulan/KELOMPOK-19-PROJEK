@@ -1,13 +1,4 @@
 public class Queue {
-    class Node {
-        String nama;
-        Node next;
-
-        Node(String nama) {
-            this.nama = nama;
-            this.next = null;
-        }
-    }
 
     Node front, rear;
 
@@ -15,8 +6,8 @@ public class Queue {
         front = rear = null;
     }
 
-    public void enqueue(String nama) {
-        Node newNode = new Node(nama);
+    public void enqueue(String Nama) {
+        Node newNode = new Node(Nama);
         if (rear == null) {
             front = rear = newNode;
             return;
@@ -30,7 +21,7 @@ public class Queue {
             System.out.println("Antrean kosong.");
             return;
         }
-        System.out.println("Jemaah yang berangkat: " + front.nama);
+        System.out.println("Jemaah yang berangkat: " + front.Nama);
         front = front.next;
         if (front == null) {
             rear = null;
@@ -43,7 +34,7 @@ public class Queue {
         } else {
             Node temp = front;
             while (temp != null) {
-                System.out.print(temp.nama + " -> ");
+                System.out.print(temp.Nama + " -> ");
                 temp = temp.next;
             }
             System.out.println();

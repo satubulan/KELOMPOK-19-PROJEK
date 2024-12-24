@@ -15,6 +15,7 @@ public class LinkedList {
             temp.next = newNode;
         }
     }
+
     public boolean cekNomorPendaftaran(String nomorPendaftaran) {
         Node temp = head;
         while (temp != null) {
@@ -52,34 +53,41 @@ public class LinkedList {
             System.out.println("Pembayaran berhasil dilakukan.");
         }
     }
-    
-    public void hapusJemaah(String nomorPendaftaran, boolean hapusSeluruh) {
-        if (head == null) {
-            System.out.println("Data kosong");
-            return;
-        }
-        if (head.nomorPendaftaran.equals(nomorPendaftaran)) {
-            if (hapusSeluruh) {
-                head = head.next;
-            } else {
-                Node temp = head;
-                Node parentToDelete = head;
-                head = head.next;
-                if (temp.ahliWarisRoot != null) {
-                    Node newNode = new Node(temp.ahliWarisRoot.namaAhliWaris, parentToDelete.TanggalPendaftaran, false, "", "", 0, "", parentToDelete.ahliWarisRoot.nextSibling); 
-                    newNode.next = head; 
-                    head = newNode; 
 
-                    TreeNode child = temp.ahliWarisRoot.firstChild;
-                    while (child != null) {
-                        head.tambahAhliWaris(child.namaAhliWaris, true); // Tambahkan sebagai anak
-                        child = child.nextSibling;
-                    }
+    public void hapus(String nomor){
+        Node temp = head;
+        Boolean found = false;
+        while(temp!=null){
+            if(temp.nomorPendaftaran.equalsIgnoreCase(nomor)){
+                found = true;
+                break;
+            }
+            temp = temp.next;
+        }
+        if(found){
+            Node temp2 = head;
+            while(temp2!=null){
+                if(temp2.next!=temp){
+                    temp2 = temp2.next;
+                }else{
+                    break;
                 }
             }
-            return;
+            if(temp == head){
+                head = head.next;
+            }else{
+                if(temp.next == null){
+                    temp2.next = null;
+                }else{
+                    temp2.next = temp.next;
+                }
+            }
+            System.out.println("Jemaah dengan nama " + temp.Nama + "berhasil dihapus dari daftar");
+        }else{
+            System.out.println("Jemaah dengan nomor " + nomor + " tidak ditemukan dalam daftar");
         }
     }
+    
     
     public void display() {
         Node temp = head;
@@ -129,7 +137,6 @@ public class LinkedList {
             if (temp.riwayatPembayaran.totalPembayaran() < 56000000) {
                 temp.StatusPembayaran = false;
             }
-            System.out.println("Pembatalan pembayaran berhasil dilakukan.");
         }
     }
 }

@@ -117,13 +117,7 @@ public class Main {
                     System.out.println("=====================================================");
                     System.out.print("Masukkan nomor pendaftaran jemaah yang ingin dihapus: ");
                     String hapusPendaftaran = scanner.nextLine();
-                    System.out.print("Apakah Anda ingin menghapus seluruh data? (y/n): ");
-                    String hapusSeluruhData = scanner.nextLine();
-                    if (hapusSeluruhData.equalsIgnoreCase("y")) {
-                        link.hapusJemaah(hapusPendaftaran, true); // true jika Anda ingin menghapus seluruh data
-                    } else {
-                        link.hapusJemaah(hapusPendaftaran, false);
-                    } // false jika Anda tidak ingin menghapus seluruh data
+                    link.hapus(hapusPendaftaran);
                     break;
 
                 case 4:
@@ -168,6 +162,7 @@ public class Main {
                     System.out.print("Metode Pembayaran: ");
                     String metode = scanner.nextLine();
                     link.bayar(nomorPendaftaran, tanggal2, jumlah, metode);
+                    System.out.println("Pembayaran berhasil dilakukan!");
                     break;
 
                 case 6:
